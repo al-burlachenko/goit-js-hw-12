@@ -31,13 +31,17 @@ function getCountryName() {
   // });
 
   countriesApiService.fetchCountries().then(countries => {
-    console.log({countries});
+    clearCountryList();
+    appendCountryList(countries)
+    // console.log({countries});
   });
 
 }
 
 function appendCountryList(countries) {
-  refs.countryList.insertAdjacentHTML('beforeend', countriesListTpl({countries}));
+  // refs.countryList.insertAdjacentHTML('beforeend', countriesInfoTpl(countries));
+  refs.countryList.insertAdjacentHTML('beforeend', countriesListTpl(countries));
+
 }
 
 function clearCountryList() {
