@@ -1,12 +1,11 @@
 import '../node_modules/normalize.css/normalize.css'
-import './css/styles.css';
+// import './css/styles.css';
 import CountriesApiService from './js/countries-api-service';
 
 import countriesListTpl from './templates/countriesList.hbs';
 import countriesInfoTpl from './templates/countriesInfo.hbs';
 
 const debounce  = require('lodash.debounce');
-// var debounce = require('lodash.debounce');
 
 const DEBOUNCE_DELAY = 300;
 
