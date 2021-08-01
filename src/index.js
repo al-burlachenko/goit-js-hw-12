@@ -1,10 +1,13 @@
+import '../node_modules/normalize.css/normalize.css'
 import './css/styles.css';
 import CountriesApiService from './js/countries-api-service';
 
 import countriesListTpl from './templates/countriesList.hbs';
 import countriesInfoTpl from './templates/countriesInfo.hbs';
 
-const _ = require('lodash');
+const debounce  = require('lodash.debounce');
+// var debounce = require('lodash.debounce');
+
 const DEBOUNCE_DELAY = 300;
 
 const countriesApiService = new CountriesApiService();
@@ -15,7 +18,7 @@ const refs = {
   countryInfo: document.querySelector('.country-info'),
 };
 
-refs.inputField.addEventListener('input', _.debounce(getCountryName, DEBOUNCE_DELAY));
+refs.inputField.addEventListener('input', debounce(getCountryName, DEBOUNCE_DELAY));
 
 // console.log(refs.countryInfo);
 // refs.inputField.value=>
