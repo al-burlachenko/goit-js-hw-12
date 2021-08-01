@@ -1,5 +1,5 @@
 import '../node_modules/normalize.css/normalize.css'
-// import './css/styles.css';
+import './css/styles.css';
 import CountriesApiService from './js/countries-api-service';
 
 import countriesListTpl from './templates/countriesList.hbs';
