@@ -1,3 +1,12 @@
 {{#each this}}
-  <li class='country-list-item'>{{name}}</li>
+
+    <li class='country-list__item'>
+
+      <span class='country-list__image_thumb'>
+        <img src='{{flag}}' alt='' width='30' />
+      </span>
+      {{name}}
+
+    </li>
+
 {{/each}}
