@@ -55,7 +55,14 @@ function getCountryName() {
         return;
       }
     })
-    .catch(() => Notiflix.Notify.warning('Oops, there is no country with that name'));
+    .catch(
+      
+      () => {
+        Notiflix.Notify.warning('Oops, there is no country with that name');
+        clearCountryList();
+      }
+    
+    );
 }
 
 function appendCountryList(countries) {
