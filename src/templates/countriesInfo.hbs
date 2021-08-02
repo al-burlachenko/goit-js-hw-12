@@ -1,14 +1,16 @@
 {{#each this}}
 
   <h2>
-    <img src='{{flag}}' alt='' width='30' />
-    {{name}}
+    <span class='country-list__image_thumb'>
+        <img src='{{flag}}' alt='' width='30' />
+      </span>
+      {{name}}
   </h2>
   <p>Capital: {{capital}}</p>
   <p>Population: {{population}}</p>
 
   <p>Languages:
-    {{#each this}}{{/each}}
+    {{lang}}
   </p>
 
 {{/each}}

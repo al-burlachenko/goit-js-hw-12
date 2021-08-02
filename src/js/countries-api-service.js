@@ -19,8 +19,6 @@ export default class CountryApiService {
         // console.log(countries);
         return countries;
       })
-      .catch(error => console.log(error));
-    // .catch(error => console.log('ошиька(', error));
   }
 
   get query() {

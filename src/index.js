@@ -19,9 +19,6 @@ const refs = {
 
 refs.inputField.addEventListener('input', debounce(getCountryName, DEBOUNCE_DELAY));
 
-Notiflix.Notify.warning('Oops, there is no country with that name');
-
-
 function getCountryName() {
   const countryName = refs.inputField.value.trim();
   countriesApiService.query = countryName;
@@ -30,48 +27,46 @@ function getCountryName() {
     return;
   }
 
-  // countriesApiService.fetchCountries().then(countries => {
-  //   console.log(countries);
-  //   appendCountryList(countries)
-  // });
+  countriesApiService
+    .fetchCountries()
+    .then(countries => {
 
-  countriesApiService.fetchCountries().then(countries => {
-    // console.log(countries);
-    // let strLanguages = '';
-    // countries[0].languages.forEach(lang => (strLanguages += lang.toString()));
-    // countries[0].languages.forEach(lang => console.log(lang));
+      let lang = [];
+      if (countries.length === 1) {
+        countries['0'].languages.map((item, i) => {
+          i !== countries['0'].languages.length - 1
+            ? (lang += item.name + ', ')
+            : (lang += item.name);
+        });
+        countries['0'].lang = lang;
+        appendCountryInfo(countries);
+        return;
+      }
 
-    countries.forEach(country => console.log(country.languages));
+      if (countries.length > 1 && countries.length < 10) {
+        appendCountryList(countries);
+        console.log('до 10');
+        return;
+      }
 
-    // console.log(countries.languages);
-    // console.log(strLanguages);
-    
+      if (countries.length > 10) {
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
 
-    if (countries.length > 2 && countries.length < 10) {
-      appendCountryList(countries);
-      console.log('до 10');
-      return;
-    }
-
-    if (countries.length > 10) {
-      Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-      
-      return;
-    }
-
-    appendCountryInfo(countries);
-  });
+        return;
+      }
+    })
+    .catch(() => Notiflix.Notify.warning('Oops, there is no country with that name'));
 }
 
 function appendCountryList(countries) {
   clearCountryList();
 
-  // refs.countryList.insertAdjacentHTML('beforeend', countriesInfoTpl(countries));
   refs.countryList.insertAdjacentHTML('beforeend', countriesListTpl(countries));
 }
 
 function appendCountryInfo(countries) {
   clearCountryList();
+  
   refs.countryList.insertAdjacentHTML('beforeend', countriesInfoTpl(countries));
 }
 
